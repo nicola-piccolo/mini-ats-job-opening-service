@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  job-opening-database:
+    image: mysql:latest
+    expose:
+      - 3306
+    volumes:
+      - ./database-init:/docker-entrypoint-initdb.d
+      - job-opening-database-data:/var/lib/mysql
+    env_file:
+      - ./.database-env
+    networks: 
+      - job-opening-network
+  job-opening-service:
+    image: miniats/job-opening-service:latest
+    ports: 
+      - 8080:8080
+    volumes:
+      - ../logs:/home/jobopeningservice/logs
+    env_file:
+      - ./.job-opening-env
+    depends_on:
+      - job-opening-database
+    networks: 
+      - job-opening-network
+volumes:
+  job-opening-database-data:
+networks:
+  job-opening-network:

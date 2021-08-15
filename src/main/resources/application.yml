@@ -1,0 +1,4 @@
+logging:
+  file: /home/job-opening-service/logs/JobOpeningService.log
+  level:
+    root: WARN
