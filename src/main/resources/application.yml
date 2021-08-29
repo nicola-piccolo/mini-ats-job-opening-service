@@ -2,3 +2,12 @@ logging:
   file: /home/job-opening-service/logs/JobOpeningService.log
   level:
     root: WARN
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${JOB_OPENING_DATABASE_HOSTNAME}:3306/${JOB_OPENING_DATABASE_NAME}
+    username: ${JOB_OPENING_DATABASE_USER}
+    password: ${JOB_OPENING_DATABASE_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect

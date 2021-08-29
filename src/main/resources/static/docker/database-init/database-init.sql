@@ -8,7 +8,7 @@ USE job_opening
 
 CREATE TABLE opening (
 	id INT(10) UNSIGNED AUTO_INCREMENT,
-	title VARCHAR(256),
+	title VARCHAR(256) NOT NULL,
 	head_count TINYINT(2) UNSIGNED,
 	min_salary INT(10) UNSIGNED,
 	max_salary INT(10) UNSIGNED,
