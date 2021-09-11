@@ -16,7 +16,7 @@ import lombok.Data;
 public class Opening {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
@@ -35,6 +35,6 @@ public class Opening {
 	@Min(value=0, message="Maximum salary must be equals to or greater than one")
 	private Long maxSalary;
 	
-	@Column(columnDefinition = "boolean default true")
-	private Boolean open;
+	@Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+	private Boolean open = true;
 }

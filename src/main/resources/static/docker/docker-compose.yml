@@ -16,14 +16,19 @@ services:
     ports: 
       - 8080:8080
     volumes:
-      - ../logs:/home/jobopeningservice/logs
+      - /tmp:/home/job-opening-service/logs
     env_file:
       - ./.job-opening-env
+      - ./.discovery-env
     depends_on:
       - job-opening-database
     networks: 
       - job-opening-network
+      - global-network
 volumes:
   job-opening-database-data:
 networks:
   job-opening-network:
+  global-network:
+    external:
+      name: mini-ats-network
