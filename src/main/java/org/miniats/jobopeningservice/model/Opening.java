@@ -19,6 +19,13 @@ public class Opening {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	private String uid;
+	
+	@NotNull
+	@Column(name="company_uid")
+	@Size(min=36, max=36, message="Company UID must be 36 characters long")
+	private String companyUid;
+
 	@NotNull
 	@Size(max=256, message="Title must be max 256 characters long")
 	private String title;
@@ -37,4 +44,7 @@ public class Opening {
 	
 	@Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT TRUE")
 	private Boolean open = true;
+	
+	@Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+	private Boolean deleted = false;
 }

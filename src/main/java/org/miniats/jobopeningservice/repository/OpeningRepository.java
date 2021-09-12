@@ -10,7 +10,7 @@ import org.springframework.retry.annotation.Backoff;
 
 public interface OpeningRepository extends PagingAndSortingRepository<Opening, Long> {
 	@Retryable(value = SQLException.class, maxAttempts = 2, backoff = @Backoff(delay = 200))
-	Optional<Opening> findById(Long id);
+	Optional<Opening> findByUid(String uid);
 	
 	@Retryable(value = SQLException.class, maxAttempts = 2, backoff = @Backoff(delay = 200))
 	Iterable<Opening> findAll();

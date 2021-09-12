@@ -15,7 +15,7 @@ eureka:
 
 spring:
   application:
-    name: jobopeningservice
+    name: jobopening
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${JOB_OPENING_DATABASE_HOSTNAME}:3306/${JOB_OPENING_DATABASE_NAME}

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.miniats.jobopeningservice.model.Opening;
 import org.miniats.jobopeningservice.repository.OpeningRepository;
+import org.miniats.jobopeningservice.util.UidGenerator;
 import org.miniats.jobopeningservice.util.ValidationErrorUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping(path="/opening", produces="application/json")
 @CrossOrigin(origins="*")
-public class JobOpeningQueryController {
+public class JobOpeningCrudController {
 	
 	@Autowired
 	private OpeningRepository openingRepository;
@@ -35,11 +36,11 @@ public class JobOpeningQueryController {
 		return this.openingRepository.findAll();
 	}
 	
-	@GetMapping("/{id}")
-	public Opening getOpeningById(@PathVariable("id") Long openingId) {
-		Optional<Opening> openingToCheck = this.openingRepository.findById(openingId);
+	@GetMapping("/{uid}")
+	public Opening getOpeningByUid(@PathVariable("uid") String openingUid) {
+		Optional<Opening> openingToCheck = this.openingRepository.findByUid(openingUid);
 		if(openingToCheck.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Opening not found for id = " + openingId);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Opening not found for uid = " + openingUid);
 		}
 		return openingToCheck.get();
 	}
@@ -47,6 +48,8 @@ public class JobOpeningQueryController {
 	@PostMapping(consumes="application/json")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Opening createOpening(@Valid @RequestBody Opening opening) {
+		String openingUid = UidGenerator.generateUid();
+		opening.setUid(openingUid);
 		return this.openingRepository.save(opening);
 	}
 	
