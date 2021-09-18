@@ -13,8 +13,8 @@ services:
       - job-opening-network
   job-opening-service:
     image: miniats/job-opening-service:latest
-    ports: 
-      - 8080:8080
+    expose: 
+      - 8080
     volumes:
       - /tmp:/home/job-opening-service/logs
     env_file:

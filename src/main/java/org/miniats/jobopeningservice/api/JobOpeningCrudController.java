@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.miniats.common.util.UidGenerator;
+import org.miniats.common.util.ValidationErrorUtility;
 import org.miniats.jobopeningservice.model.Opening;
 import org.miniats.jobopeningservice.repository.OpeningRepository;
-import org.miniats.jobopeningservice.util.UidGenerator;
-import org.miniats.jobopeningservice.util.ValidationErrorUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
