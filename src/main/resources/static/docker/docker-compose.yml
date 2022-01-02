@@ -10,7 +10,7 @@ services:
     env_file:
       - ./.database-env
     networks: 
-      - job-opening-network
+      - ats-network
   job-opening-service:
     image: miniats/job-opening-service:latest
     expose: 
@@ -23,12 +23,10 @@ services:
     depends_on:
       - job-opening-database
     networks: 
-      - job-opening-network
-      - global-network
+      - ats-network
 volumes:
   job-opening-database-data:
 networks:
-  job-opening-network:
-  global-network:
+  ats-network:
     external:
       name: mini-ats-network
